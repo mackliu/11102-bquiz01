@@ -48,7 +48,23 @@ class DB{
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
     }
-    public function save(){
+    public function save($array){
+        if(isset($array['id'])){
+            //更新
+            $id=$array['id'];
+            unset($array['id']);
+            $tmp=$this->arrayToSqlArray($array);
+            $sql="update $this->table set ".join(",",$tmp)." where `id`='$id'";
+                                            
+        }else{
+            //新增
+            $cols=array_keys($array);
+            $sql="insert into $this->table (`".join("`,`",$cols)."`) values('".join("','",$array)."')";
+        }
+
+        echo $sql;
+
+        $this->pdo->exec($sql);
 
     }
     public function del($id){
@@ -105,6 +121,15 @@ function q(){
 
 $db=new DB('bottom');
 $bot=$db->all();
-print_r($bot);
+//print_r($bot);
 //$db->del(2);
-print_r($db->all());
+//print_r($db->all());
+//$db->save(['bottom'=>"2022頁尾版權"]);
+
+$row=$db->find(1);
+print_r($row);
+
+$row['bottom']="2023 科技大學版權所有";
+print_r($row);
+$db->save($row);
+
