@@ -51,8 +51,19 @@ class DB{
     public function save(){
 
     }
-    public function del(){
+    public function del($id){
+        $sql="delete from $this->table ";
+        
+        if(is_array($id)){
+            $tmp=$this->arrayToSqlArray($id);
 
+            $sql = $sql . " where " .join(" && ",$tmp);
+
+        }else{
+            $sql = $sql . " where `id`='$id'";
+        }
+
+        return $this->pdo->exec($sql);
     }
     public function sum(){
 
@@ -95,3 +106,5 @@ function q(){
 $db=new DB('bottom');
 $bot=$db->all();
 print_r($bot);
+//$db->del(2);
+print_r($db->all());
