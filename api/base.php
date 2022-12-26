@@ -83,32 +83,20 @@ class DB{
     }
 
     public function count(...$arg){
-        $sql="select count(*) from $this->table ";
-        if(isset($arg[0])){
-            if(is_array($arg[0])){
-                $tmp=$this->arrayToSqlArray($arg[0]);
-                $sql=$sql . " where ". join(" && ",$tmp);
-            }else{
-                $sql=$sql . $arg[0];
-            }
-        }
-        echo $sql;
-        return $this->pdo->query($sql)->fetchColumn();
+        return $this->math('count',...$arg); //...為解構賦值
     }
 
-    public function sum($col,...$arg){
-        $sql="select sum($col) from $this->table ";
-
-        return $this->pdo->query($sql)->fetchColumn();
+    public function sum($col,...$arg){//...為不定參數
+        return $this->math('sum',$col,...$arg); //...為解構賦值
     }
-    public function max(){
-
+    public function max($col,...$arg){
+        return $this->math('max',$col,...$arg); //...為解構賦值
     }
-    public function min($col){
-
+    public function min($col,...$arg){
+        return $this->math('min',$col,...$arg); //...為解構賦值
     }
-    public function avg($col){
-
+    public function avg($col,...$arg){
+        return $this->math('avg',$col,...$arg); //...為解構賦值
     }
 
     private function arrayToSqlArray($array){
@@ -117,6 +105,27 @@ class DB{
         }
 
         return $tmp;
+    }
+
+    private function math($math,...$arg){
+        switch($math){
+            case 'count':
+                $sql="select count(*) from $this->table ";
+            break;
+            default:
+                $sql="select $math($arg[0]) from $this->table ";
+        }
+
+        if(isset($arg[1])){
+            if(is_array($arg[1])){
+                $tmp=$this->arrayToSqlArray($arg[1]);
+                $sql=$sql . " where " .  join(" && ",$tmp);
+            }else{
+                $sql=$sql . $arg[1];
+            }
+        }
+        //echo $sql;
+        return $this->pdo->query($sql)->fetchColumn();
     }
 
 }
@@ -152,4 +161,24 @@ $row['bottom']="2023 科技大學版權所有";
 print_r($row);
 $db->save($row);
  */
-echo $db->sum('price');
+echo "資料總數為:".$db->count();
+echo "<br>";
+echo "資料加總為:".$db->sum('price'," where id in(1,4)");
+echo "<br>";
+echo "價格最大為:".$db->max('price');
+echo "<br>";
+echo "id最小為:".$db->min('id');
+echo "<br>";
+echo "平均價格為:".$db->avg('price');
+echo "<br>";
+echo "<br>";
+/* $array['a'];
+$array['c'];
+
+$a=$array['a'];
+$c=$array['c']; */
+
+//解構
+/* extract($array);
+echo '$a='.$a;
+echo '$c='.$c; */
