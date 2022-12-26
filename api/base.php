@@ -111,17 +111,25 @@ class DB{
         switch($math){
             case 'count':
                 $sql="select count(*) from $this->table ";
+                if(isset($arg[0])){
+                    $con=$arg[0]; 
+                }
             break;
             default:
-                $sql="select $math($arg[0]) from $this->table ";
+                $col=$arg[0];
+                if(isset($arg[1])){
+                    $con=$arg[1];
+                }
+                $sql="select $math($col) from $this->table ";
+
         }
 
-        if(isset($arg[1])){
-            if(is_array($arg[1])){
-                $tmp=$this->arrayToSqlArray($arg[1]);
+        if(isset($con)){
+            if(is_array($con)){
+                $tmp=$this->arrayToSqlArray($con);
                 $sql=$sql . " where " .  join(" && ",$tmp);
             }else{
-                $sql=$sql . $arg[1];
+                $sql=$sql . $con;
             }
         }
         //echo $sql;
@@ -161,7 +169,7 @@ $row['bottom']="2023 科技大學版權所有";
 print_r($row);
 $db->save($row);
  */
-echo "資料總數為:".$db->count();
+echo "資料總數為:".$db->count(["bottom"=>"2022頁尾版權"]);
 echo "<br>";
 echo "資料加總為:".$db->sum('price'," where id in(1,4)");
 echo "<br>";
