@@ -145,7 +145,7 @@ echo "</pre>";
 }
 
 function to($url){
-    header("location".$url);
+    header("location:".$url);
 }
 
 function q($sql){
@@ -158,3 +158,4 @@ function q($sql){
 
 
 $Bottom=new DB('bottom');
+$Title=new DB('title');
