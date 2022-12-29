@@ -6,6 +6,8 @@ if(!empty($_FILES['img']['tmp_name'])){
     $img=$_FILES['img']['name'];
 }
 
+
+
 $Mvim->save(['img'=>$img,'sh'=>1]);
 to('../back.php?do=mvim');
 
