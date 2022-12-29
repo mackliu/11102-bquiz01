@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-12-29 04:41:14
+-- 產生時間： 2022-12-29 08:45:14
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 8.1.6
 
@@ -38,9 +38,9 @@ CREATE TABLE `ad` (
 --
 
 INSERT INTO `ad` (`id`, `text`, `sh`) VALUES
-(1, '轉知臺北教育大學與臺灣師大合辦第11屆麋研齋全國硬筆書法比賽活動A', 1),
-(2, '轉知:法務部辦理「第五屆法規知識王網路闖關競賽辦法B', 1),
-(5, '轉知:教育是人類升沉的樞紐-2013教師生命成長營C', 0);
+(1, '轉知臺北教育大學與臺灣師大合辦第11屆麋研齋全國硬筆書法比賽活動G', 1),
+(5, '轉知:教育是人類升沉的樞紐-2013教師生命成長營D', 1),
+(6, '木火日尸木', 1);
 
 -- --------------------------------------------------------
 
@@ -66,6 +66,50 @@ INSERT INTO `bottom` (`id`, `bottom`, `price`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `image`
+--
+
+CREATE TABLE `image` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `img` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sh` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `image`
+--
+
+INSERT INTO `image` (`id`, `img`, `sh`) VALUES
+(1, '01D05.jpg', 1),
+(2, '01D07.jpg', 0),
+(3, '01D08.jpg', 0),
+(4, '01D03.jpg', 1);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `mvim`
+--
+
+CREATE TABLE `mvim` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `img` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sh` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `mvim`
+--
+
+INSERT INTO `mvim` (`id`, `img`, `sh`) VALUES
+(1, '01C01.gif', 1),
+(3, '01C03.gif', 0),
+(4, '01C02.gif', 1),
+(5, '01C04.gif', 1);
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `title`
 --
 
@@ -81,10 +125,10 @@ CREATE TABLE `title` (
 --
 
 INSERT INTO `title` (`id`, `img`, `text`, `sh`) VALUES
-(7, '01B04.jpg', 'AAAAAA', 0),
-(8, '01B02.jpg', 'BBBBB', 1),
-(9, '01B01.jpg', 'CCCCCC', 0),
-(11, '01B04.jpg', 'dfsasdfaf', 0);
+(7, '01B02.jpg', 'AAAAAA', 1),
+(9, '01B01.jpg', 'DDDDDD', 0),
+(13, '01B03.jpg', '木日火木尸', 0),
+(14, '01B01.jpg', '火日尸火日', 0);
 
 --
 -- 已傾印資料表的索引
@@ -103,6 +147,18 @@ ALTER TABLE `bottom`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 資料表索引 `image`
+--
+ALTER TABLE `image`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `mvim`
+--
+ALTER TABLE `mvim`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `title`
 --
 ALTER TABLE `title`
@@ -116,7 +172,7 @@ ALTER TABLE `title`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `ad`
 --
 ALTER TABLE `ad`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `bottom`
@@ -125,10 +181,22 @@ ALTER TABLE `bottom`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `image`
+--
+ALTER TABLE `image`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `mvim`
+--
+ALTER TABLE `mvim`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `title`
 --
 ALTER TABLE `title`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
