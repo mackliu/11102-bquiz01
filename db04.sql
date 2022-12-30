@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-12-29 09:23:05
+-- 產生時間： 2022-12-30 06:11:59
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 8.1.6
 
@@ -69,18 +69,15 @@ INSERT INTO `admin` (`id`, `acc`, `pw`) VALUES
 
 CREATE TABLE `bottom` (
   `id` int(10) UNSIGNED NOT NULL,
-  `bottom` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `price` int(10) NOT NULL
+  `bottom` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `bottom`
 --
 
-INSERT INTO `bottom` (`id`, `bottom`, `price`) VALUES
-(1, '2023 科技大學版權所有', 100),
-(3, '2022頁尾版權', 200),
-(4, '2022頁尾版權', 300);
+INSERT INTO `bottom` (`id`, `bottom`) VALUES
+(1, '2023 泰山大學版權所有 盜用必究');
 
 -- --------------------------------------------------------
 
@@ -103,6 +100,31 @@ INSERT INTO `image` (`id`, `img`, `sh`) VALUES
 (2, '01D07.jpg', 0),
 (3, '01D08.jpg', 0),
 (4, '01D03.jpg', 1);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `menu`
+--
+
+CREATE TABLE `menu` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `href` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parent` int(10) UNSIGNED NOT NULL,
+  `sh` int(1) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `menu`
+--
+
+INSERT INTO `menu` (`id`, `name`, `href`, `parent`, `sh`) VALUES
+(2, '管理登入', '?do=login', 0, 1),
+(3, '校園映像AAA', 'index.php', 1, 1),
+(6, 'AAAA', 'DDDDD', 1, 1),
+(8, 'dfd', 'dd', 1, 1),
+(9, 'cc', 'ccccc', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -165,10 +187,28 @@ CREATE TABLE `title` (
 --
 
 INSERT INTO `title` (`id`, `img`, `text`, `sh`) VALUES
-(7, '01B02.jpg', 'AAAAAA', 1),
+(7, '01B02.jpg', 'AAAAAA', 0),
 (9, '01B01.jpg', 'DDDDDD', 0),
-(13, '01B03.jpg', '木日火木尸', 0),
+(13, '01B03.jpg', '木日火木尸', 1),
 (14, '01B01.jpg', '火日尸火日', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `total`
+--
+
+CREATE TABLE `total` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `total` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `total`
+--
+
+INSERT INTO `total` (`id`, `total`) VALUES
+(1, 250);
 
 --
 -- 已傾印資料表的索引
@@ -199,6 +239,12 @@ ALTER TABLE `image`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 資料表索引 `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `mvim`
 --
 ALTER TABLE `mvim`
@@ -214,6 +260,12 @@ ALTER TABLE `news`
 -- 資料表索引 `title`
 --
 ALTER TABLE `title`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `total`
+--
+ALTER TABLE `total`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -245,6 +297,12 @@ ALTER TABLE `image`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `mvim`
 --
 ALTER TABLE `mvim`
@@ -261,6 +319,12 @@ ALTER TABLE `news`
 --
 ALTER TABLE `title`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `total`
+--
+ALTER TABLE `total`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
