@@ -47,7 +47,7 @@
                 <tr>
                     <td width="200px">
                         <input type="button" 
-                            onclick="op('#cover','#cvr','./modal/admin.php')" 
+                            onclick="op('#cover','#cvr','./modal/menu.php')" 
                               value="新增主選單">
                     </td>
                     <td class="cent">
