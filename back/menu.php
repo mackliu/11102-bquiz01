@@ -13,8 +13,9 @@
                     <td></td>
                 </tr>
                 <?php
-                    $rows=$Menu->all();
+                    $rows=$Menu->all(["parent"=>0]);
                   foreach($rows as $row){
+                    $checked=($row['sh']==1)?"checked":"";
                 ?>
                 <tr>
                     <td>
@@ -25,7 +26,7 @@
                     </td>
                     <td></td>
                     <td>
-                        <input type="checkbox" name="sh[]" value="<?=$row['id'];?>">
+                        <input type="checkbox" name="sh[]" value="<?=$row['id'];?>" <?=$checked;?>>
                     </td>
                     <td>
                         <input type="checkbox" name="del[]" value="<?=$row['id'];?>">
