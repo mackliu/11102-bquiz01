@@ -62,7 +62,7 @@ class DB{
             $sql="insert into $this->table (`".join("`,`",$cols)."`) values('".join("','",$array)."')";
         }
 
-        echo $sql;
+        //echo $sql;
 
         $this->pdo->exec($sql);
 
@@ -166,3 +166,12 @@ $News=new DB('news');
 $Admin=new DB('admin');
 $Menu=new DB('menu');
 $Total=new DB('total');
+
+
+if(!isset($_SESSION['visit'])){
+    $_SESSION['visit']=1;
+    $total=$Total->find(1);
+    $total['total']++;
+    $Total->save($total);
+}
+
