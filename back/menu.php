@@ -34,7 +34,7 @@
                     <td>
                         <input type="button" 
                               value="編輯次選單"
-                            onclick="op('#cover','#cvr','./modal/submenu.php')">
+                            onclick="op('#cover','#cvr','./modal/submenu.php?id=<?=$row['id'];?>')">
                     </td>
                         <input type="hidden" name="id[]" value="<?=$row['id'];?>">
                 </tr>
