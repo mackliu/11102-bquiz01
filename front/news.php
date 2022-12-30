@@ -21,7 +21,7 @@
 						$rows=$News->all(['sh'=>1]," limit $start,$div");
 						echo "<ol start='".($start+1)."'>";
 						foreach($rows as $idx => $row){
-							echo "<li>";
+							echo "<li class='sswww'>";
 		/* 					echo $start+$idx+1 . ". "; */
 							echo mb_substr($row['text'],0,25);
 							echo "<span class='all' style='display:none;'>";
@@ -60,3 +60,21 @@
 					?>
 				</div>
 			</div>
+
+			<div id="alt" style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;"></div>
+			<script>
+				$(".sswww").hover(
+					function() {
+						console.log($(this).offset())
+						$("#alt").html("<pre>" + $(this).children(".all").html() + "</pre>").css({
+							"top": $(this).offset().top - 50
+						})
+						$("#alt").show()
+					}
+				)
+				$(".sswww").mouseout(
+					function() {
+						$("#alt").hide()
+					}
+				)
+			</script>
