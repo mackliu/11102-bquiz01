@@ -33,6 +33,25 @@ include "./api/base.php";
 				<div id="menuput" class="dbor">
 					<!--主選單放此-->
 					<span class="t botli">主選單區</span>
+					<?php 
+						$mains=$Menu->all(['sh'=>1,'parent'=>0]);
+						foreach($mains as $main){
+							echo "<a href='{$main['href']}'>";
+							echo "<div class='mainmu'>{$main['name']}</div>";
+							echo "</a>";
+
+							if($Menu->count(['parent'=>$main['id']])>0){
+								$subs=$Menu->all(['parent'=>$main['id']]);
+								foreach($subs as $sub){
+									echo "<a href='{$sub['href']}'>";
+									echo "<div class='mainmu2'>";
+									echo $sub['name'];
+									echo "</div>";
+									echo "</a>";
+								}
+							}
+						}
+					?>
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
 					<span class="t">進站總人數 :<?=$Total->find(1)['total'];?> </span>

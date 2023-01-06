@@ -11,7 +11,8 @@
 			</marquee>
 				<div style="height:32px; display:block;"></div>
 				<!--正中央-->
-
+				<h3>更多最新消息</h3>
+				<hr>
 					<?php
 						$all=$News->count(['sh'=>1]);
 						$div=5;
@@ -65,7 +66,7 @@
 			<script>
 				$(".sswww").hover(
 					function() {
-						console.log($(this).offset())
+						
 						$("#alt").html("<pre>" + $(this).children(".all").html() + "</pre>").css({
 							"top": $(this).offset().top - 50
 						})
